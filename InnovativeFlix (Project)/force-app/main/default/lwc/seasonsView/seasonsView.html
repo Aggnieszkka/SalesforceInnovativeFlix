@@ -1,0 +1,67 @@
+<template>
+	<lightning-card title="Seasons">
+		<div class="slds-card__body_inner">
+			<template if:false={showSeasons}>
+				<lightning-button label="Back" onclick={handleBackClick} class="slds-m-left_x-small"></lightning-button>
+			</template>
+
+			<template if:true={showSeasons}>
+				<lightning-card>
+					<template if:true={seasons.data}>
+						<lightning-datatable
+							key-field="Id"
+							data={seasons.data}
+							columns={season_columns}
+							hide-checkbox-column="true"
+							onrowaction={handleSeasonRowAction}
+						>
+						</lightning-datatable>
+
+						<template if:true={showSeasonsPreviousPageButton}>
+							<lightning-button label="<<" onclick={handleSeasonsFirstPageClick} class="slds-m-left_x-small"></lightning-button>
+							<lightning-button label="<" onclick={handleSeasonsPreviousPageClick} class="slds-m-left_x-small"></lightning-button>
+						</template>
+						<span>{seasonsPage} of {seasonsLastPage}</span>
+						<template if:true={showSeasonsNextPageButton}>
+							<lightning-button label=">" onclick={handleSeasonsNextPageClick} class="slds-m-left_x-small"></lightning-button>
+							<lightning-button label=">>" onclick={handleSeasonsLastPageClick} class="slds-m-left_x-small"></lightning-button>
+						</template>
+					</template>
+				</lightning-card>
+			</template>
+
+			<template if:true={showEpisodes}>
+				<lightning-card>
+					<template if:true={episodes.data}>
+						<lightning-datatable
+							key-field="Id"
+							data={episodes.data}
+							columns={episode_columns}
+							hide-checkbox-column="true"
+							onrowaction={handleEpisodeRowAction}
+						>
+						</lightning-datatable>
+
+						<template if:true={showEpisodesPreviousPageButton}>
+							<lightning-button label="<<" onclick={handleEpisodesFirstPageClick} class="slds-m-left_x-small"></lightning-button>
+							<lightning-button label="<" onclick={handleEpisodesPreviousPageClick} class="slds-m-left_x-small"></lightning-button>
+						</template>
+						<span>{episodesPage} of {episodesLastPage}</span>
+						<template if:true={showEpisodesNextPageButton}>
+							<lightning-button label=">" onclick={handleEpisodesNextPageClick} class="slds-m-left_x-small"></lightning-button>
+							<lightning-button label=">>" onclick={handleEpisodesLastPageClick} class="slds-m-left_x-small"></lightning-button>
+						</template>
+						
+					</template>
+				</lightning-card>
+			</template>
+
+			<template if:true={error}>
+				<div class="slds-text-color_error">
+					An error occurred while loading the list
+				</div>
+			</template>
+
+		</div>
+	</lightning-card>
+</template>

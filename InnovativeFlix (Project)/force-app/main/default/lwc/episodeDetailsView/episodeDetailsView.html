@@ -1,0 +1,19 @@
+<template>
+    <template if:true={episode.data}>
+        <lightning-card title={episode.data.Name}>
+            <div class="slds-var-p-horizontal_small">
+                <div class="slds-media">
+                    <div class="slds-media__body">
+                        <p class="slds-var-m-bottom_xx-small">TV series: {episode.data.TV_Series__c}</p>
+                        <p class="slds-var-m-bottom_xx-small">Season: {season.data.Name}</p>
+                        <p class="slds-var-m-bottom_xx-small">Episode number: {episode.data.Number__c}</p>
+                        <p class="slds-var-m-bottom_xx-small">Description: {episode.data.Description__c}</p>
+                    </div>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+    <template if:false={episode.data}>
+        <lightning-card title="Select episode from seasons to see details."></lightning-card>
+    </template>
+</template>
